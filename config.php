@@ -1,6 +1,6 @@
 <?php
 
-$accessToken = 'thisIsATest'
-$autoDestroyDelayInSeconds = 60;
+$accessToken = 'thisIsATest';
+$autoDestroyDelayInSeconds = 120;
 
  ?>
