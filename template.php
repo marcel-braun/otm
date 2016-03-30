@@ -3,6 +3,10 @@
 //This is copied to a subdir.
 require_once('../config.php');
 
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 $created = filemtime('index.php');
 $now = time();
 $diffInSeconds = $now - $created;
