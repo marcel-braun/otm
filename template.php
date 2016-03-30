@@ -8,7 +8,8 @@ $now = time();
 $diffInSeconds = $now - $created;
 
 if($diffInSeconds < $autoDestroyDelayInSeconds) {
-  echo '{payload}';
+  echo '<html><title>OTM with '.$diffInSeconds.' seconds</title><link rel="stylesheet" href="../style.css">'.
+    '<body><textarea><{payload}</textarea></body></html>';
 }
 
 $parentDir = basename(__DIR__);

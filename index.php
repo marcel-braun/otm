@@ -15,7 +15,9 @@ if($postAccessToken !== $accessToken) {
   copy('template.php', $dirName.'/index.php');
   findAndReplace($dirName.'/index.php', '{payload}', addslashes($postPayload));
 
-  echo $dirName;
+  header('content-type: text/plain; charset=utf-8');
+  header("access-control-allow-origin: *");
+  exit($dirName);
 }
 
 ?>
