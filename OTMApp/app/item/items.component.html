@@ -7,6 +7,11 @@
         <TextView [(ngModel)]="tvtext" hint="Enter some text" returnKeyType="send" (returnPress)="submit($event)"
                   class="input input-border bigTextView"></TextView>
     </StackLayout>
-
     <Button class="btn btn-primary btn-active" id="button" text="Nachricht senden" (tap)="send()"></Button>
+
+    <Label text="Link:" class="label h2"></Label>
+    <Label [text]="link" class="label h3" row="0" col="0"></Label>
+    <GridLayout columns="* auto" rows="auto">
+        <Button class="btn btn-active btn-primary" text="Share" (tap)="share()" row="0" col="1"></Button>
+    </GridLayout>
 </StackLayout>

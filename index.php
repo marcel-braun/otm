@@ -8,8 +8,8 @@ define('AES_256_CBC', 'aes-256-cbc');
 $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
 $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
 
-
-$json = json_decode(file_get_contents("php://input"));
+$post = file_get_contents("php://input");
+$json = json_decode($post);
 
 $postAccessToken = $json->AccessToken;
 $postPayload = $json->Message;
@@ -32,7 +32,7 @@ if ($postAccessToken !== $accessToken) {
     header("access-control-allow-origin: *");
 
     $out = new JsonOut();
-    $out->Link = $link;
+    $out->link = $link;
 
     echo json_encode($out);
 }
@@ -49,7 +49,7 @@ Class Message
 }
 
 Class JsonOut {
-    public $Link = "";
+    public $link = "";
 }
 
 ?>
