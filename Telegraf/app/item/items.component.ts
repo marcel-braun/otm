@@ -9,6 +9,7 @@ import {Page} from "tns-core-modules/ui/page";
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
 let http = require("http");
+let tsfx = require('nativescript-effects');
 
 
 @Component({
@@ -22,8 +23,6 @@ export class ItemsComponent implements OnInit {
     private AccessToken = "b8a99727bfe27e085c371292056e1ff2";
     public link = "";
 
-    private duration = 500;
-
     @ViewChild('page2') _page2: ElementRef;
     @ViewChild('page1') _page1: ElementRef;
 
@@ -31,14 +30,14 @@ export class ItemsComponent implements OnInit {
     page2: AbsoluteLayout;
 
     constructor(private page: Page) {
-        page.actionBarHidden = true;
+        //page.actionBarHidden = true;
     }
 
     ngOnInit(): void {
         this.page1 = this._page1.nativeElement;
         this.page2 = this._page2.nativeElement;
 
-        this.page2.left = screen.mainScreen.widthPixels;
+        this.page2.hide();
     }
 
     public send() {
@@ -50,7 +49,7 @@ export class ItemsComponent implements OnInit {
         }).then((response) => {
             let result = response.content.toJSON();
             this.link = result.link;
-            this.showPage2();
+            this.slidePage(this.page1, this.page2);
 
         }, function (e) {
             alert("Error occurred " + e);
@@ -65,26 +64,24 @@ export class ItemsComponent implements OnInit {
         SocialShare.shareUrl(this.link, "One Time Message");
     }
 
-    public showPage2() {
+    public slidePage(pageOne: AbsoluteLayout, pageTwo: AbsoluteLayout, direction: string = "in") {
         let definitions: Array<any> = [];
 
-        let page1 = {
-            target: this.page1,
-            translate: { x: -screen.mainScreen.widthPixels, y: 0},
-            duration: this.duration
+        let page1: any;
+        let page2: any;
+
+        if(direction == "back") {
+            pageOne.floatIn("slow", "right");
+            pageTwo.floatOut("fast", "left");
         }
 
-        definitions.push(page1);
-
-        let page2 = {
-            target: this.page2,
-            translate: { x: -screen.mainScreen.widthPixels, y: 0},
-            duration: this.duration
+        if(direction == "in") {
+            pageOne.floatOut("fast", "right");
+            pageTwo.floatIn("slow", "left");
         }
+    }
 
-        definitions.push(page2);
-
-        let set = new animation.Animation(definitions);
-        set.play();
+    public goBack() {
+        this.slidePage(this.page1, this.page2, "back")
     }
 }

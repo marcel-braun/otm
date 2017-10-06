@@ -1,7 +1,9 @@
 // Import the theme’s variables. If you’re using a color scheme
 // other than “light”, switch the path to the alternative scheme,
 // for example '~nativescript-theme-core/scss/dark'.
-@import '~nativescript-theme-core/scss/dark';
+@import '~nativescript-theme-core/scss/forest';
+
+$btn-color: #555;
 
 // Customize any of the theme’s variables here, for instance $btn-color: red;
 
@@ -23,32 +25,35 @@
   @extend .mb-m-bottom;
 }
 
+$mb-padding: 20pt;
+$mb-padding2: 30pt;
+
 .mb-p-left {
-  padding-left: 15px;
+  padding-left: $mb-padding;
 }
 
 .mb-p-right {
-  padding-right: 15px;
+  padding-right: $mb-padding;
 }
 
 .mb-p {
-  padding: 15px;
+  padding: $mb-padding;
 }
 
 .mb-p-bottom {
-  padding-bottom: 15px;
+  padding-bottom: $mb-padding;
 }
 
 .mb-p-top {
-  padding-top: 15px;
+  padding-top: $mb-padding;
 }
 
 .mb-m-top {
-  margin-top: 15px;
+  margin-top: $mb-padding2;
 }
 
 .mb-m-bottom {
-  margin-bottom: 25px;
+  margin-bottom: $mb-padding2;
 }
 
 .input-field.full-width {

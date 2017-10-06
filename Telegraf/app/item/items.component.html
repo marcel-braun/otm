@@ -1,14 +1,17 @@
-<ActionBar title="One Time Message" class="action-bar">
+<ActionBar title="Telegraf - Secure OTM" class="action-bar">
 </ActionBar>
 
+
 <AbsoluteLayout class="page" height="100%">
+    <Gradient direction="to bottom" colors="#B4ED50, #429321" height="100%" width="100%" top="0" left="0">
+    </Gradient>
     <!-- Page 1 -->
-    <Gradient #page1 class="p-t-25" direction="to bottom" colors="#B4ED50, #429321" top="0" left="0" height="100%"
-              width="100%">
+    <StackLayout #page1 class="p-t-25" top="0" left="0" height="100%"
+                 width="100%">
         <StackLayout class="input-field">
             <Label text="Insert your secure message:" class="label mb-p-left mb-p-bottom"></Label>
-            <TextView [(ngModel)]="tvtext" hint="Enter your message ..." returnKeyType="send"
-                      (returnPress)="submit($event)"
+            <TextView [(ngModel)]="tvtext" hint="Enter your message ..."
+                      returnKeyType="next"
                       class="input input-border bigTextView"></TextView>
         </StackLayout>
 
@@ -25,16 +28,19 @@
         </GridLayout>
 
         <StackLayout class="mb-m-top">
-            <Button class="btn btn-active btn-primary" text="Send your message" (tap)="send()" row="0" col="1"></Button>
+            <Button class="btn btn-active btn-primary" text="Send your message" (tap)="send()" row="0"
+                    col="1"></Button>
         </StackLayout>
-    </Gradient>
+    </StackLayout>
     <!-- /Page 1 -->
     <!-- Page 2 -->
-    <Gradient #page2 class="p-t-25" direction="to bottom" colors="#B4ED50, #429321" top="0" left="0" height="100%"
-              width="100%">
-        <Label [text]="link" class="h2" textWrap="true"></Label>
+    <StackLayout #page2 class="p-t-25" top="0" left="0" height="100%"
+                 width="100%">
+        <Label text="Your secure link:" class="mb-p-left label" textWrap="true"></Label>
+        <Label [text]="link" class="mb-p-left mb-p-right mb-m-bottom label h3" textWrap="true"></Label>
 
-        <Button class="btn btn-active btn-primary" text="Share" (tap)="share()" row="0" col="1"></Button>
-    </Gradient>
+        <Button class="btn btn-active btn-primary" text="Share this link" (tap)="share()" row="0" col="1"></Button>
+        <Button class="btn btn-outline" text="Create new message" (tap)="goBack()" row="0" col="1"></Button>
+    </StackLayout>
     <!-- /Page 2 -->
 </AbsoluteLayout>
