@@ -10,6 +10,8 @@ registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
 let http = require("http");
 let tsfx = require('nativescript-effects');
+let AES = require("crypto-js/aes");
+var SHA256 = require("crypto-js/sha256");
 
 
 @Component({
@@ -19,8 +21,9 @@ let tsfx = require('nativescript-effects');
 })
 export class ItemsComponent implements OnInit {
 
-    public tvtext = "";
-    private AccessToken = "b8a99727bfe27e085c371292056e1ff2";
+    public message = "";
+    public password = "";
+    private accessToken = "b8a99727bfe27e085c371292056e1ff2";
     public link = "";
 
     @ViewChild('page2') _page2: ElementRef;
@@ -45,19 +48,16 @@ export class ItemsComponent implements OnInit {
             url: "https://otm.marcel-braun.de/index.php",
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            content: JSON.stringify({ Message: this.tvtext, AccessToken: this.AccessToken })
+            content: JSON.stringify({ message: this.message, password: this.password, accessToken: this.accessToken })
         }).then((response) => {
             let result = response.content.toJSON();
             this.link = result.link;
+
             this.slidePage(this.page1, this.page2);
 
         }, function (e) {
             alert("Error occurred " + e);
         });
-    }
-
-    public submit($event) {
-        alert(this.tvtext);
     }
 
     public share() {
