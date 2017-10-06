@@ -1,0 +1,40 @@
+<ActionBar title="One Time Message" class="action-bar">
+</ActionBar>
+
+<AbsoluteLayout class="page" height="100%">
+    <!-- Page 1 -->
+    <Gradient #page1 class="p-t-25" direction="to bottom" colors="#B4ED50, #429321" top="0" left="0" height="100%"
+              width="100%">
+        <StackLayout class="input-field">
+            <Label text="Insert your secure message:" class="label mb-p-left mb-p-bottom"></Label>
+            <TextView [(ngModel)]="tvtext" hint="Enter your message ..." returnKeyType="send"
+                      (returnPress)="submit($event)"
+                      class="input input-border bigTextView"></TextView>
+        </StackLayout>
+
+        <Stacklayout class="mb-m-bottom">
+            <Label text="Enable password protection:" class="label mb-p-left"></Label>
+            <Label class="label h3 mb-p-left mb-p-right subtext"
+                   text="With password protection, your message will be encrypted with AES-1024 and your reader get a password prompt. Let it empty if you don’t need it."
+                   textWrap="true"></Label>
+        </Stacklayout>
+
+        <GridLayout class="input-field full-width" rows="*" columns="auto, *">
+            <Label class="label" text="Password" textWrap="true" row="0" col="0"></Label>
+            <TextField class="input input-border" hint="Your password ..." text="" row="0" col="1"></TextField>
+        </GridLayout>
+
+        <StackLayout class="mb-m-top">
+            <Button class="btn btn-active btn-primary" text="Send your message" (tap)="send()" row="0" col="1"></Button>
+        </StackLayout>
+    </Gradient>
+    <!-- /Page 1 -->
+    <!-- Page 2 -->
+    <Gradient #page2 class="p-t-25" direction="to bottom" colors="#B4ED50, #429321" top="0" left="0" height="100%"
+              width="100%">
+        <Label [text]="link" class="h2" textWrap="true"></Label>
+
+        <Button class="btn btn-active btn-primary" text="Share" (tap)="share()" row="0" col="1"></Button>
+    </Gradient>
+    <!-- /Page 2 -->
+</AbsoluteLayout>

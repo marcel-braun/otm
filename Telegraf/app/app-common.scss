@@ -1,0 +1,62 @@
+// Import the theme’s variables. If you’re using a color scheme
+// other than “light”, switch the path to the alternative scheme,
+// for example '~nativescript-theme-core/scss/dark'.
+@import '~nativescript-theme-core/scss/dark';
+
+// Customize any of the theme’s variables here, for instance $btn-color: red;
+
+// Import the theme’s main ruleset.
+@import '~nativescript-theme-core/scss/index';
+
+// Place any CSS rules you want to apply on both iOS and Android here.
+// This is where the vast majority of your CSS code goes.
+
+.page {
+}
+.subtext {
+  color: #333333;
+}
+.bigTextView {
+  height: 20%;
+  font-size: 15px;
+  @extend .mb-p;
+  @extend .mb-m-bottom;
+}
+
+.mb-p-left {
+  padding-left: 15px;
+}
+
+.mb-p-right {
+  padding-right: 15px;
+}
+
+.mb-p {
+  padding: 15px;
+}
+
+.mb-p-bottom {
+  padding-bottom: 15px;
+}
+
+.mb-p-top {
+  padding-top: 15px;
+}
+
+.mb-m-top {
+  margin-top: 15px;
+}
+
+.mb-m-bottom {
+  margin-bottom: 25px;
+}
+
+.input-field.full-width {
+  background-color: white;
+  height: 44pt;
+
+  label {
+    @extend .mb-p-left;
+    @extend .mb-p-right;
+  }
+}

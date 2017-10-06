@@ -8,6 +8,7 @@ define('AES_256_CBC', 'aes-256-cbc');
 $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
 $encrypted = openssl_encrypt($data, AES_256_CBC, $encryption_key, 0, $iv);
 
+
 $post = file_get_contents("php://input");
 $json = json_decode($post);
 
