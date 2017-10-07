@@ -46,7 +46,7 @@ export class ItemsComponent implements OnInit {
 
     public send() {
         http.request({
-            url: "https://otm.marcel-braun.de/index.php",
+            url: "https://otm.marcel-braun.de/save",
             method: "POST",
             headers: { "Content-Type": "application/json" },
             content: JSON.stringify({ message: this.message, password: this.password, accessToken: this.accessToken })
@@ -62,7 +62,7 @@ export class ItemsComponent implements OnInit {
     }
 
     public share() {
-        SocialShare.shareUrl(this.link, "Secure Message");
+        SocialShare.shareUrl(this.link, "");
     }
 
     public slidePage(pageOne: AbsoluteLayout, pageTwo: AbsoluteLayout, direction: string = "in") {

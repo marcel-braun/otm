@@ -2,37 +2,41 @@
 require_once('config.php');
 require_once('lib.php');
 
-$post = file_get_contents("php://input");
-$json = json_decode($post);
-
 $folder = $_GET["folder"];
 $password = $_POST["password"];
 
 $key = md5($defaultEncryptionKey);
 $iv = md5($defaultEncryptionKey);
 
+// Abbrechen wenn der Ordner nicht existiert
 if(!is_dir(MESSAGE_DIR . $folder)) {
     header("Location: /404");
     exit;
 }
 
+// Prüfung ob ein Password Flag vorhanden ist
 if(file_exists(MESSAGE_DIR . $folder . "/key")) {
     if(isset($password)) {
         $key = md5($password);
         $iv = md5($password);
     } else {
         header("Location: /prompt/$folder");
+        exit;
     }
 }
 
+// Nachricht entschlüsseln
 $iv = substr($iv, 0, 16);
 $crypted_message = file_get_contents(MESSAGE_DIR . $folder . "/message");
 $uncrypted_message = openssl_decrypt($crypted_message, "aes-256-cbc", $key, 0, $iv);
 
+// Abbrechen wenn die Nachricht leer ist, also nicht entschlüsselt werden konnte.
 if(empty($uncrypted_message)) {
     header("Location: /prompt/$folder");
+    exit;
 }
 
+// Nach erfolgreicher entschlüsselung den Ordner löschen.
 $mask = MESSAGE_DIR . $folder . "/*";
 array_map( "unlink", glob( $mask ) );
 rmdir(MESSAGE_DIR . $folder);
@@ -48,7 +52,7 @@ rmdir(MESSAGE_DIR . $folder);
     <title>Telegraf, One Time Message</title>
 
     <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,7 +63,7 @@ rmdir(MESSAGE_DIR . $folder);
 </head>
 <body>
 <div class="container">
-    <h1>Your encrypted message</h1>
+    <h3>Your encrypted message</h3>
     <h4><?php echo $uncrypted_message ?></h4>
 </div>
 

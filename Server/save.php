@@ -16,7 +16,7 @@ if(isset($postAccessToken) && isset($message)) {
     mkdir($dirName);
 
     // Password Flag wird gespeichert
-    if(isset($password)) {
+    if(isset($password) && $password != "") {
         file_put_contents ($dirName . "/key", "true");
 
         // prepare AES encryption

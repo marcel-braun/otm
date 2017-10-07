@@ -1,24 +1,5 @@
 <?php
-
-$code = $_GET["code"];
-
-if(!isset($code))
-    $code = $_SERVER['REDIRECT_STATUS'];
-
-$codes = array(
-    403 => 'Forbidden',
-    404 => 'The message you are looking for has either never existed or has already been read.',
-    401 => 'Unauthorized',
-    500 => 'Internal Server Error'
-);
-$source_url = 'http'.((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 's' : '').'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-
-if (array_key_exists($code, $codes) && is_numeric($code)) {
-    $headline = "Error: $code";
-    $message = "$codes[$code]";
-} else {
-    $message = 'Unknown error';
-}
+    $folder = $_GET["folder"];
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +9,11 @@ if (array_key_exists($code, $codes) && is_numeric($code)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta property="og:title" content="You get a Message on Telegraf" />
+    <meta property="og:description" content="Click here to read your Secure, One Time Message" />
+    <meta property="og:url" content="http://otm.marcel-braun.de" />
+    <meta property="og:image" content="http://otm.marcel-braun.de/Icon-128.png" />
+
     <title>Telegraf, One Time Message</title>
 
     <!-- Bootstrap -->
@@ -41,9 +27,10 @@ if (array_key_exists($code, $codes) && is_numeric($code)) {
     <![endif]-->
 </head>
 <body>
-<div class="container">
-    <h1><?php echo $headline ?></h1>
-    <h4><?php echo $message ?></h4>
+<div class="container" style="padding-top: 100px; text-align: center">
+    <form method="post" action="/read/<?php echo $folder ?>">
+        <button class="btn btn-primary" style="width: 80%; height: 44px">Go on ...</button>
+    </form>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -52,4 +39,3 @@ if (array_key_exists($code, $codes) && is_numeric($code)) {
 <!--<script src="js/bootstrap.min.js"></script>-->
 </body>
 </html>
-
