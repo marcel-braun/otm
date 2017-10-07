@@ -1,32 +1,3 @@
-<?php
-
-//This is copied to a subdir.
-require_once('../config.php');
-
-header("Cache-Control: no-cache, no-store, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
-
-if(strpos($_SERVER["HTTP_USER_AGENT"], "WhatsApp") !== false) {
-    echo "Whatsapp Messanger";
-    exit();
-}
-
-$created = filemtime('index.php');
-$now = time();
-$diffInSeconds = $now - $created;
-$message = "";
-
-if($diffInSeconds < $autoDestroyDelayInSeconds) {
-    $message = "{payload}";
-}
-
-$parentDir = basename(__DIR__);
-unlink('index.php');
-rmdir('../'.$parentDir);
-
- ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +8,7 @@ rmdir('../'.$parentDir);
     <title>Telegraf, One Time Message</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +18,19 @@ rmdir('../'.$parentDir);
     <![endif]-->
 </head>
 <body>
-<h1><?php echo $message ?></h1>
+<div class="container">
+    <h1>This message is encrypted</h1>
+    <h4>Use the password that yout get from your Partner to decrypt the message.</h4>
+    <br>
+    <form method="POST" action="/<?php echo $_GET["folder"]?>">
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter your password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Decrypt your message</button>
+    </form>
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

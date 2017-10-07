@@ -5,13 +5,14 @@ import {screen} from "tns-core-modules/platform";
 import * as animation from "tns-core-modules/ui/animation";
 import { registerElement } from "nativescript-angular";
 import {Page} from "tns-core-modules/ui/page";
+import {toBase64String} from "@angular/compiler/src/output/source_map";
 
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 
 let http = require("http");
 let tsfx = require('nativescript-effects');
 let AES = require("crypto-js/aes");
-var SHA256 = require("crypto-js/sha256");
+let MD5 = require("crypto-js/md5");
 
 
 @Component({

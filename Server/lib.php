@@ -10,10 +10,4 @@ function generateRandomString($length = 3) {
   return $randomString;
 }
 
-function findAndReplace($file, $searchString, $replaceWith) {
-  $file_contents = file_get_contents($file);
-  $file_contents = str_replace($searchString, $replaceWith, $file_contents);
-  file_put_contents($file,$file_contents);
-}
-
 ?>
