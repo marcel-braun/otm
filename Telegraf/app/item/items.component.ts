@@ -61,7 +61,7 @@ export class ItemsComponent implements OnInit {
     }
 
     public share() {
-        SocialShare.shareUrl(this.link, "One Time Message");
+        SocialShare.shareUrl(this.link, "Secure Message");
     }
 
     public slidePage(pageOne: AbsoluteLayout, pageTwo: AbsoluteLayout, direction: string = "in") {
