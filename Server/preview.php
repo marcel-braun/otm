@@ -12,7 +12,7 @@
     <meta property="og:title" content="You get a Message on Telegraf" />
     <meta property="og:description" content="Click here to read your Secure, One Time Message" />
     <meta property="og:url" content="http://otm.marcel-braun.de" />
-    <meta property="og:image" content="http://otm.marcel-braun.de/Icon-128.png" />
+    <meta property="og:image" content="http://otm.marcel-braun.de/images/Icon-128.png" />
 
     <title>Telegraf, One Time Message</title>
 

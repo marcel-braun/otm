@@ -47,7 +47,7 @@ rmdir(MESSAGE_DIR . $folder);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Telegraf, One Time Message</title>
 
@@ -65,6 +65,15 @@ rmdir(MESSAGE_DIR . $folder);
 <div class="container">
     <h3>Your encrypted message</h3>
     <h4><?php echo $uncrypted_message ?></h4>
+    <hr class="hr-dark">
+
+    <div style="text-align: center; margin-top: 40px;">
+        <img src="/images/Download_on_the_App_Store_Badge_US-UK_135x40.svg" width="135px" height="40px"/>
+    </div>
+</div>
+
+<div class="alert alert-danger" style="position: absolute; bottom: 0px; margin: 20px;" role="alert">
+    Remember, this message has been deleted. After closing this window you can't read the message again!
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
