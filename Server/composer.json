@@ -1,0 +1,7 @@
+{
+    "require": {
+        "michelf/php-markdown": "^1.7",
+        "blocktrail/cryptojs-aes-php": "^0.1.0",
+        "league/plates": "^3.3"
+    }
+}

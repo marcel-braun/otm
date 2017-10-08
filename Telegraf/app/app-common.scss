@@ -21,8 +21,10 @@ $btn-color: #555;
 .bigTextView {
   height: 20%;
   font-size: 15px;
-  @extend .mb-p;
-  @extend .mb-m-bottom;
+}
+.webview {
+  height: 50%;
+  width: 100%;
 }
 
 $mb-padding: 20pt;

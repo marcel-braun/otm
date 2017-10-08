@@ -9,38 +9,51 @@
     <StackLayout #page1 class="p-t-25" top="0" left="0" height="100%"
                  width="100%">
         <StackLayout class="input-field">
-            <Label text="Insert your secure message:" class="label mb-p-left mb-p-bottom"></Label>
+            <Label text="Insert your secure message:" class="label mb-p-left"></Label>
+            <Label text="You can use Markdown to format your text." class="label mb-p-left mb-p-bottom h4 subtext"
+                   textWrap="true"></Label>
             <TextView [(ngModel)]="message" hint="Enter your message ..."
                       returnKeyType="next"
-                      class="input input-border bigTextView"></TextView>
+                      class="input input-border bigTextView mb-p mb-m-bottom"></TextView>
         </StackLayout>
 
         <Stacklayout class="mb-m-bottom">
             <Label text="Enable password protection:" class="label mb-p-left"></Label>
-            <Label class="label h3 mb-p-left mb-p-right subtext"
+            <Label class="label h4 mb-p-left mb-p-right subtext"
                    text="With password protection, your message will be encrypted with AES-256 and your reader get a password prompt. Let it empty if you don’t need it."
                    textWrap="true"></Label>
         </Stacklayout>
 
         <GridLayout class="input-field full-width" rows="*" columns="auto, *">
             <Label class="label" text="Password" textWrap="true" row="0" col="0"></Label>
-            <TextField class="input input-border" hint="Your password ..." [(ngModel)]="password" row="0" col="1"></TextField>
+            <TextField class="input input-border" hint="Your password ..." [(ngModel)]="password" row="0"
+                       col="1"></TextField>
         </GridLayout>
 
-        <StackLayout class="mb-m-top">
-            <Button class="btn btn-active btn-primary" text="Send your message" (tap)="send()" row="0"
+        <GridLayout class="mb-m-top" rows="*" , columns="*, *" height="55pt">
+            <Button class="btn btn-outline" text="Preview" (tap)="preview()" row="0" col="0"></Button>
+            <Button class="btn btn-active btn-primary" text="Encrypt" (tap)="send()" row="0"
                     col="1"></Button>
-        </StackLayout>
+        </GridLayout>
     </StackLayout>
     <!-- /Page 1 -->
+
     <!-- Page 2 -->
-    <StackLayout #page2 class="p-t-25" top="0" left="0" height="100%"
-                 width="100%">
+    <StackLayout #page2 class="p-t-25" top="0" left="0" height="100%" width="100%">
         <Label text="Your secure link:" class="mb-p-left label" textWrap="true"></Label>
         <Label [text]="link" class="mb-p-left mb-p-right mb-m-bottom label h3" textWrap="true"></Label>
 
-        <Button class="btn btn-active btn-primary" text="Share this link" (tap)="share()" row="0" col="1"></Button>
-        <Button class="btn btn-outline" text="Create new message" (tap)="goBack()" row="0" col="1"></Button>
+        <Button class="btn btn-active btn-primary" text="Share this link" (tap)="share()"></Button>
+        <Button class="btn btn-outline" text="Create new message" (tap)="goBack()"></Button>
     </StackLayout>
     <!-- /Page 2 -->
+
+    <!-- WebView -->
+    <StackLayout #webview class="p-t-25" top="0" left="0" height="100%" width="100%">
+        <Label text="Message Preview" class="label mb-p-bottom mb-p-left"></Label>
+        <WebView class="webview mb-m-bottom" [src]="webViewSrc"></WebView>
+        <Label text="This preview is only useful, if you use Markdown." class="label subtext h3 mb-m-bottom mb-p-left"></Label>
+        <Button class="btn btn-primary btn-active" text="Go back" (tap)="previewBack()"></Button>
+    </StackLayout>
+    <!-- /WebView -->
 </AbsoluteLayout>

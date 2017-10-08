@@ -1,6 +1,9 @@
 <?php
 require_once('config.php');
 require_once('lib.php');
+require 'vendor/autoload.php';
+
+use Michelf\Markdown;
 
 $folder = $_GET["folder"];
 $password = $_POST["password"];
@@ -29,6 +32,8 @@ if(file_exists(MESSAGE_DIR . $folder . "/key")) {
 $iv = substr($iv, 0, 16);
 $crypted_message = file_get_contents(MESSAGE_DIR . $folder . "/message");
 $uncrypted_message = openssl_decrypt($crypted_message, "aes-256-cbc", $key, 0, $iv);
+
+$uncrypted_message = Markdown::defaultTransform($uncrypted_message);
 
 // Abbrechen wenn die Nachricht leer ist, also nicht entschlüsselt werden konnte.
 if(empty($uncrypted_message)) {
@@ -62,9 +67,11 @@ rmdir(MESSAGE_DIR . $folder);
     <![endif]-->
 </head>
 <body>
-<div class="container">
-    <h3>Your encrypted message</h3>
-    <h4><?php echo $uncrypted_message ?></h4>
+<div class="container" style="margin-bottom: 150px;">
+    <div class="alert alert-success" style="margin-top: 20px; margin-bottom: 20px;" role="alert">
+        Your secure, decrypted message!
+    </div>
+    <?php echo $uncrypted_message ?>
     <hr class="hr-dark">
 
     <div style="text-align: center; margin-top: 40px;">
@@ -72,7 +79,7 @@ rmdir(MESSAGE_DIR . $folder);
     </div>
 </div>
 
-<div class="alert alert-danger" style="position: absolute; bottom: 0px; margin: 20px;" role="alert">
+<div class="alert alert-danger" style="position: fixed; bottom: 0px; margin: 20px;" role="alert">
     Remember, this message has been deleted. After closing this window you can't read the message again!
 </div>
 
